@@ -72,4 +72,4 @@ Facilitar o acesso a pontos de coleta e incentivar práticas sustentáveis no di
 
 ## 📌 Status
 
-🚧 Em desenvolvimento
+🚧 Pronto
