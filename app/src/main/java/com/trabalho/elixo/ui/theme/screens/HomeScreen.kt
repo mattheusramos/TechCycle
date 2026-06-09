@@ -8,6 +8,7 @@ import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
+import androidx.compose.material.icons.automirrored.filled.ExitToApp
 import androidx.compose.material3.*
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
@@ -93,7 +94,7 @@ fun HomeScreen(
                 actions = {
                     IconButton(onClick = onLogout) {
                         Icon(
-                            painter = painterResource(id = R.drawable.exit),
+                            imageVector = androidx.compose.material.icons.Icons.AutoMirrored.Filled.ExitToApp,
                             contentDescription = "Logout",
                             modifier = Modifier.size(30.dp),
                             tint = Color.Unspecified

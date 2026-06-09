@@ -30,6 +30,10 @@ fun LoginScreen(
     var showDialog by remember { mutableStateOf(false) }
     var showSuccessDialog by remember { mutableStateOf(false) }
     var telefone by remember { mutableStateOf("") }
+    var showErrorDialog by remember { mutableStateOf(false) }
+
+    val usuarioCorreto = "TesteApp"
+    val senhaCorreta = "123456"
 
     Scaffold(
         containerColor = MaterialTheme.colorScheme.background
@@ -44,7 +48,6 @@ fun LoginScreen(
             horizontalAlignment = Alignment.CenterHorizontally
         ) {
 
-            // LOGO
             Image(
                 painter = painterResource(id = R.drawable.app_icon),
                 contentDescription = "Logo",
@@ -61,7 +64,6 @@ fun LoginScreen(
 
             Spacer(modifier = Modifier.height(32.dp))
 
-            // usuario
             OutlinedTextField(
                 value = usuario,
                 onValueChange = { usuario = it },
@@ -73,7 +75,6 @@ fun LoginScreen(
 
             Spacer(modifier = Modifier.height(16.dp))
 
-            // SENHA
             OutlinedTextField(
                 value = senha,
                 onValueChange = { senha = it },
@@ -97,10 +98,13 @@ fun LoginScreen(
 
             Spacer(modifier = Modifier.height(24.dp))
 
-            // BOTÃO LOGIN
             Button(
                 onClick = {
-                    onLogin()
+                    if (usuario == usuarioCorreto && senha == senhaCorreta) {
+                        onLogin()
+                    } else {
+                        showErrorDialog = true
+                    }
                 },
                 modifier = Modifier.fillMaxWidth(),
                 colors = ButtonDefaults.buttonColors(
@@ -116,6 +120,26 @@ fun LoginScreen(
                 onClick = { showDialog = true}
             ) {
                 Text("Esqueceu sua senha?", color = GreenPrimary)
+            }
+
+            if (showErrorDialog) {
+                AlertDialog(
+                    onDismissRequest = { showErrorDialog = false },
+                    confirmButton = {
+                        Button(
+                            onClick = { showErrorDialog = false },
+                            colors = ButtonDefaults.buttonColors(containerColor = GreenPrimary)
+                        ) {
+                            Text("OK", color = White)
+                        }
+                    },
+                    title = {
+                        Text("Falha no Login")
+                    },
+                    text = {
+                        Text("Usuário ou senha incorretos. Por favor, verifique os dados e tente novamente.")
+                    }
+                )
             }
 
             if (showDialog) {
