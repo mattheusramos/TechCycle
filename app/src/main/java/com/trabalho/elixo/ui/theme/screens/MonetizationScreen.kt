@@ -71,7 +71,6 @@ fun MonetizacaoScreen(onBack: () -> Unit) {
             contentPadding = PaddingValues(vertical = 16.dp)
         ) {
 
-            // CARD DE SALDO
             item {
                 Card(
                     shape = RoundedCornerShape(16.dp),
@@ -113,7 +112,6 @@ fun MonetizacaoScreen(onBack: () -> Unit) {
                 }
             }
 
-            // TÍTULO
             item {
                 Text(
                     "Itens que você pode reciclar",
@@ -122,7 +120,6 @@ fun MonetizacaoScreen(onBack: () -> Unit) {
                 )
             }
 
-            // LISTA
             items(itens) { item ->
                 Card(
                     shape = RoundedCornerShape(16.dp),
@@ -149,7 +146,6 @@ fun MonetizacaoScreen(onBack: () -> Unit) {
                             Text("R$ %.2f".format(item.valor))
                         }
 
-                        // BtMenos
                         IconButton(
                             onClick = {
                                 if (item.quantidade > 0) {
@@ -166,7 +162,6 @@ fun MonetizacaoScreen(onBack: () -> Unit) {
 
                         Text("${item.quantidade}")
 
-                        // BtMais
                         IconButton(
                             onClick = {
                                 itens = itens.map {
@@ -182,7 +177,6 @@ fun MonetizacaoScreen(onBack: () -> Unit) {
                 }
             }
 
-            // BOTÃO
             item {
                 Button(
                     onClick = {
@@ -194,9 +188,8 @@ fun MonetizacaoScreen(onBack: () -> Unit) {
                                 it.quantidade * it.valor
                             }
 
-                            saldo += valorTotal // soma
+                            saldo += valorTotal
 
-                            // limpa carrinho
                             itens = itens.map { it.copy(quantidade = 0) }
 
                             showSuccessDialog = true
@@ -252,7 +245,6 @@ fun MonetizacaoScreen(onBack: () -> Unit) {
             )
         }
 
-        // RESGATE
         if (showDialog) {
             AlertDialog(
                 onDismissRequest = { showDialog = false },
